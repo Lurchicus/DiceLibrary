@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <Description>A utility class for throwing up to 1000 dies with up to 1000 sides.</Description>
+    <Copyright>Dan Rhea (c) 2022</Copyright>
+    <PackageTags>Dice roller; D and D roller</PackageTags>
+  </PropertyGroup>
+
+</Project>
