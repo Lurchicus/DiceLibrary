@@ -1,4 +1,4 @@
-# DiceLibraryApp 1.0.1.0
+# DiceLibraryApp 1.0.3.0
 
 By Dan Rhea (aka Lurchicus) 8/5/2022
 
@@ -66,5 +66,3 @@ Dies object structure (a single die class object)
 	- int: Adjustment - Numeric adjustment (positive or negative) applied to the final total
 	- int: Result - The throw result of just "this" die.
 	- int: Total - Running total of all throws
-
-
