@@ -1,7 +1,7 @@
 ﻿namespace DiceLibrary
 {
     /// <summary>
-    /// Describes the contents of a set of dice
+    /// Describes the contents of a die object
     /// </summary>
     public class Dies
     {

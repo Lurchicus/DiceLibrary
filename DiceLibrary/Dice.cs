@@ -45,7 +45,7 @@
             }
             else
             {
-                throw new Exception("Dice error: " + DiceQuantity.ToString() + " dies is out of range (1:1000).");
+                throw new Exception("Dice error: " + DiceQuantity.ToString() + " dies quantity is out of range (1:1000).");
             }
             // Up to 1000 sides on a die
             if (DiceSides >= 1 && DiceSides <= 1000)
@@ -64,15 +64,15 @@
                 try
                 {
                     Die ADie = new(DiceId, DiceSides);  // Create and toss a die
-                    DiceCup.Add(ADie);                  // Save it in a "dice cup"
+                    DiceCup.Add(ADie);                 // Save it in a "dice cup"
                     Dies ADetail = new();               // Create a "Dice" detail object
-                    ADetail.Id = ADie.Id;               // Die ID
-                    ADetail.Qty = DiceQuantity;         // Quantity (same for all)
-                    ADetail.Sides = ADie.Sides;         // Sides (also the same for all)
+                    ADetail.Id = ADie.Id;                   // Die ID
+                    ADetail.Qty = DiceQuantity;             // Quantity (same for all... a place to save the info)
+                    ADetail.Sides = ADie.Sides;             // Sides (also the same for all)
                     ADetail.Adjustment = DiceAdjustment;    // Adjustment (same)
-                    ADetail.Result = ADie.Result;       // Get the roll result for the die
-                    ADetail.Total = Results();          // By putting this here, I get a running adjusted total
-                    Details.Add(ADetail);               // Shove the details into a list (1:1 with Dice Cup)
+                    ADetail.Result = ADie.Result;           // Get the roll result for this die
+                    ADetail.Total = Results();              // By putting this here, I get a running adjusted total
+                    Details.Add(ADetail);              // Shove the details into a list (1:1 with Dice Cup)
                 }
                 catch (OutOfMemoryException e)
                 {
@@ -84,7 +84,7 @@
                 {
                     DiceCup.Clear();
                     Details.Clear();
-                    throw new Exception("Dice exception, creating die.", e);
+                    throw new Exception("Dice exception, creating die." + e.Message, e);
                 }
             }
         }

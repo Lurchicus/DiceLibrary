@@ -33,13 +33,14 @@
         /// <param name="DieSides">int: 1 to 1000 sides</param>
         public Die(int DieId, int DieSides)
         {
+            // The 1000 limit is artificial and is entended to keep memory usage reasonable
             if (DieSides >= 1 && DieSides <= 1000)
             {
                 Sides = DieSides;
             }
             else
             {
-                throw new Exception("Die error: " + DieSides.ToString() + " sides is out of range (0:1000).");
+                throw new Exception("Die error: " + DieSides.ToString() + " sides is out of range (1:1000).");
             }
             Id = DieId;
             Result = Toss();

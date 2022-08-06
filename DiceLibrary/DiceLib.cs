@@ -32,11 +32,7 @@ namespace DiceLibrary
             }
             catch (Exception e)
             {
-                throw new Exception("Dice rolling error: " + e.Message);
-            }
-            if (dies.Result == 0)
-            {
-                return 0;
+                throw new Exception("Dice rolling error: " + e.Message, e.InnerException);
             }
             return dies.Result;
         }
@@ -69,6 +65,7 @@ namespace DiceLibrary
             }
             if (Dice.Count == 0)
             {
+                // Still wondering if just returning an empty list would be better
                 throw new Exception("Dice rolling error: No roll result.");
             }
             return Dice; // List<Dies> 
@@ -88,6 +85,7 @@ namespace DiceLibrary
             int Adjustment = 0;
             Dies dies = new();          // Dice roller instance
 
+            // Parse the dice notation string
             Parse(cmd, ref Quantity, ref Sides, ref Adjustment);
 
             try
@@ -106,10 +104,6 @@ namespace DiceLibrary
             {
                 throw new Exception("Dice rolling error: " + e.Message);
             }
-            if (dies.Result == 0)
-            {
-                return 0;
-            }
             return dies.Total;
         }
 
@@ -126,8 +120,8 @@ namespace DiceLibrary
         private static void Parse(string arg, ref int Quantity, ref int Sides, ref int Adjustment)
         {
             string arrg = arg.Trim().ToUpper();
-            string[] parm1 = { "D" }; //Dies/sides delimiter
-            string[] parm2 = { "+", "-" }; //Adjustment delimiters
+            string[] parm1 = { "D" };       //Dies/sides delimiter
+            string[] parm2 = { "+", "-" };  //Adjustment delimiters
 
             // Parse individual dice roll command or default to 1d6+0
 

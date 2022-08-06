@@ -1,0 +1,70 @@
+# DiceLibraryApp 1.0.1.0
+
+By Dan Rhea (aka Lurchicus) 8/5/2022
+
+Written in C# 10.0 for .NET 6.0
+
+This class library contains some utility methods for throwing 1 to 1000
+dice with 1 to 1000 sides and have an adjustment that can be
+added to the final result. You can return the final result or a list
+of objects containing details for each die (documented below).
+
+The limit of 1000 is an artifical one imposed to try and keep memory
+usage to a reasonable level. You can up the limit by cloneing and
+modifying the source code and recompiling the library.
+
+Dice with 1 or 2 sides are a special "coin toss" mode where a value of 
+1 indicates you can throw a 1 or 0 on any given throw. A Value of 2 is the
+same, but will throw a 1 or 2.
+
+The class library by design allows you to specify dice that would be 
+impossible or at least improbable (like a 3 sided die).
+
+The program also has a method that accepts a dice notation string to
+designate quantity, sides and adjustments like "3D6+1" by using a built 
+in parser (private method Parse) I created.
+
+I'm kind of winging it on documenting the library methods. I'll 
+improve it as I see more examples. I also plan on eventually putting
+the library in a NuGet package.
+
+RollDies - Create, roll dice and return the result.
+
+	int RollDies(int Quantity, int Sides, int Adjustment)
+
+	- int: Quantity - Number of dice to "throw" (1:1000)
+	- int: Sides - Number of sides on a die (1:1000)
+	- int: Adjustment: Adjustment to apply to the total result (+/- int) 
+
+	Returns the total of all dice thrown including the adjustment.
+
+RollDetails - Create, roll dice and return a list structure of all dice throws.
+
+	List<Dies> RollDetails(int Quantity, int Sides, int Adjustment)
+
+	- int: Quantity - Number of dice to "throw" (1:1000)
+	- int: Sides - Number of sides on a die (1:1000)
+	- int: Adjustment: Adjustment to apply to the total result (+/- int) 
+
+	Returns a list of "Dies" objects of all dice thrown (see below for dies structure)
+
+RollDAndD -  Take a dice notation string to determine what dice we need to throw.
+
+	int RollDAndD(string RollCommand)
+
+	- string: RollCommand - Dice notation string (quantityDsides[[+|-]adjustment], I.E. 1D6+1)
+
+		Quantity and sides are still limited to 1 to 1000.
+
+	Returns the total of all dice thrown including the adjustment.
+
+Dies object structure (a single die class object)
+
+	- int: Id - Numeric id of and individual die
+	- int: Qty - Number of dies being thrown
+	- int: Sides - Number of sides on a die (a value of 0 or 1 does a coin flip (0 or 1 | 1 or 2)
+	- int: Adjustment - Numeric adjustment (positive or negative) applied to the final total
+	- int: Result - The throw result of just "this" die.
+	- int: Total - Running total of all throws
+
+
