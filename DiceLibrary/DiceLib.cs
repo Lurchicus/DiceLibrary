@@ -217,7 +217,7 @@ namespace DiceLibrary
                     }
                     if (Adjustment > 0)
                     {
-                        if (arrg.Contains("-"))
+                        if (arrg.Contains((string)"-"))
                         {
                             // if the delimiter was a "-", negate the adjustment
                             Adjustment = 0 - Adjustment;
