@@ -1,4 +1,9 @@
 ﻿
+using System.Reflection.Emit;
+using System.Runtime.Intrinsics.X86;
+using System.Security;
+using System;
+
 namespace DiceLibrary
 {
     /// <summary>
@@ -72,6 +77,32 @@ namespace DiceLibrary
         }
 
         /// <summary>
+        /// This method simply parses the dice notation strings and returns them to the
+        /// caller (by reference) as Quantity, Sides and Adjustment
+        /// </summary>
+        /// <param name="Cmd">string: dice notation string</param>
+        /// <param name="Quantity">ref int: Number of dice</param>
+        /// <param name="Sides">ref int: Number of sides on dice</param>
+        /// <param name="Adjustment">ref int: Adjustment to final total</param>
+        /// <returns>bool: true=Good parse, false=parse fail (force 1d6)</returns>
+        public bool ParseDAndD(string Cmd, ref int Quantity, ref int Sides, ref int Adjustment)
+        {
+            try
+            {
+                // Parse the dice notation string
+                Parse(Cmd, ref Quantity, ref Sides, ref Adjustment);
+            }
+            catch
+            {
+                Quantity = 1;
+                Sides = 6;
+                Adjustment = 0;
+                return false; // Parse error
+            }
+            return true;
+        }
+
+        /// <summary>
         /// Take a dice notation string to determine what dice we need to
         /// throw, throw then and return the result
         /// </summary>
@@ -105,6 +136,35 @@ namespace DiceLibrary
                 throw new Exception("Dice rolling error: " + e.Message);
             }
             return dies.Total;
+        }
+
+        /// <summary>
+        /// Returns a Formatted string containing the MIT License
+        /// </summary>
+        /// <returns>string: Formatted string containing the MIT License</returns>
+        public string MITLicense()
+        {
+            string? License = "Copyright 2022 Dan Rhea\n\r\n\r";
+            License += "Permission is hereby granted, free of charge, to any person obtaining\n\r";
+            License += "a copy of this software and associated documentation files (the\n\r";
+            License += "\"Software\"), to deal in the Software without restriction, including\n\r";
+            License += "without limitation the rights to use, copy, modify, merge, publish,\n\r";
+            License += "distribute, sublicense, and/ or sell copies of the Software, and to\n\r";
+            License += "permit persons to whom the Software is furnished to do so, subject\n\r";
+            License += "to the following conditions:\n\r\n\r";
+
+            License += "The above copyright notice and this permission notice shall be\n\r";
+            License += "included in all copies or substantial portions of the Software.\n\r\n\r";
+
+            License += "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\n\r";
+            License += "EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES\n\r";
+            License += "OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\n\r";
+            License += "NONINFRINGEMENT.IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS\n\r";
+            License += "BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN\n\r";
+            License += "ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN\n\r";
+            License += "CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\n\r";
+            License += "THE SOFTWARE.\n\r";
+            return License;
         }
 
         /// <summary>

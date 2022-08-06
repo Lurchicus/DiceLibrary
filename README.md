@@ -1,4 +1,4 @@
-# DiceLibraryApp 1.0.3.0
+# DiceLibraryApp 1.0.4.0
 
 By Dan Rhea (aka Lurchicus) 8/5/2022
 
@@ -48,7 +48,19 @@ RollDetails - Create, roll dice and return a list structure of all dice throws.
 
 	Returns a list of "Dies" objects of all dice thrown (see below for dies structure)
 
-RollDAndD -  Take a dice notation string to determine what dice we need to throw.
+ParseDAndD - Parses dice notation string into quantity, side and adjustment'
+
+	public bool ParseDAndD(string Cmd, ref int Quantity, ref int Sides, ref int Adjustment)
+
+	- string: Cmd Dice notation string (quantityDsides[[+|-]adjustment], I.E. 3d20-3)
+	- ref int: Quantity - Number of dice to "throw" (1:1000)
+	- ref int: Sides - Number of sides on a die (1:1000)
+	- ref int: Adjustment: Adjustment to apply to the total result (+/- int)
+
+	Returns a bool. True for a good parse and false for a bad parse. A bad parse
+	will force a return of 1d6 values which is the default
+
+RollDAndD - Take a dice notation string to determine what dice we need to throw and throw them
 
 	int RollDAndD(string RollCommand)
 
@@ -57,6 +69,12 @@ RollDAndD -  Take a dice notation string to determine what dice we need to throw
 		Quantity and sides are still limited to 1 to 1000.
 
 	Returns the total of all dice thrown including the adjustment.
+
+MITLicense - Returns a string containing the formatted MIT license
+
+	public string MITLicense()
+
+	Returns a string containing the formatted MIT license
 
 Dies object structure (a single die class object)
 

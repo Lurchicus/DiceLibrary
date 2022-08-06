@@ -10,14 +10,24 @@
     <PackageTags>Dice roller; D and D roller</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <AssemblyVersion>1.0.3.0</AssemblyVersion>
-    <FileVersion>1.0.3.0</FileVersion>
+    <AssemblyVersion>1.0.5.0</AssemblyVersion>
+    <FileVersion>1.0.5.0</FileVersion>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageReleaseNotes>Code and comment clean-up</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="README.md">
+    <None Remove="MIT_License.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="MIT_License.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
