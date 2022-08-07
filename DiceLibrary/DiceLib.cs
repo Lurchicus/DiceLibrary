@@ -144,8 +144,7 @@ namespace DiceLibrary
         /// <returns>string: Formatted string containing the MIT License</returns>
         public string MITLicense()
         {
-            string? License = "Copyright 2022 Dan Rhea\n\r\n\r";
-            License += "Permission is hereby granted, free of charge, to any person obtaining\n\r";
+            string? License = "Permission is hereby granted, free of charge, to any person obtaining\n\r";
             License += "a copy of this software and associated documentation files (the\n\r";
             License += "\"Software\"), to deal in the Software without restriction, including\n\r";
             License += "without limitation the rights to use, copy, modify, merge, publish,\n\r";
