@@ -7,7 +7,7 @@ using System;
 namespace DiceLibrary
 {
     /// <summary>
-    /// Dice rolling utility library
+    /// Dice rolling class library
     /// </summary>
     public class DiceLib
     {
@@ -18,7 +18,7 @@ namespace DiceLibrary
         /// <param name="sides">int: Number of sides on a die (1:1000)</param>
         /// <param name="adj">int: Adjustment to apply to the total result (MinInt:MaxInt)</param>
         /// <returns>int: Dice roll result plus adjustment</returns>
-        /// <exception cref="Exception"></exception>
+        /// <exception cref="Exception">General and inner exception</exception>
         static public int RollDies(int qty, int sides, int adj)
         {
             Dies dies = new();  // Dice roller instance

@@ -1,4 +1,4 @@
-# DiceLibraryApp 1.0.7.0
+# DiceLibrary 1.0.8.0
 
 By Dan Rhea (aka Lurchicus) 8/5/2022
 
