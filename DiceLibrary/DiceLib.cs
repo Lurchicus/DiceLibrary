@@ -17,9 +17,9 @@ namespace DiceLibrary
         /// <param name="qty">int: Number of dice to "throw" (1:1000)</param>
         /// <param name="sides">int: Number of sides on a die (1:1000)</param>
         /// <param name="adj">int: Adjustment to apply to the total result (MinInt:MaxInt)</param>
-        /// <returns></returns>
+        /// <returns>int: Dice roll result plus adjustment</returns>
         /// <exception cref="Exception"></exception>
-        public int RollDies(int qty, int sides, int adj)
+        static public int RollDies(int qty, int sides, int adj)
         {
             Dies dies = new();  // Dice roller instance
 
@@ -50,7 +50,7 @@ namespace DiceLibrary
         /// <param name="adj">int: Adjustment to apply to the total result (MinInt:MaxInt)</param>
         /// <returns>A list of dies containing roll details</returns>
         /// <exception cref="Exception">General exception or Nothing to return</exception>
-        public List<Dies> RollDetails (int qty, int sides, int adj)
+        static public List<Dies> RollDetails (int qty, int sides, int adj)
         {
             List<Dies> Dice = new();    // List of Dies to hold return
 
@@ -85,7 +85,7 @@ namespace DiceLibrary
         /// <param name="Sides">ref int: Number of sides on dice</param>
         /// <param name="Adjustment">ref int: Adjustment to final total</param>
         /// <returns>bool: true=Good parse, false=parse fail (force 1d6)</returns>
-        public bool ParseDAndD(string Cmd, ref int Quantity, ref int Sides, ref int Adjustment)
+        static public bool ParseDAndD(string Cmd, ref int Quantity, ref int Sides, ref int Adjustment)
         {
             try
             {
@@ -109,7 +109,7 @@ namespace DiceLibrary
         /// <param name="cmd">string: Dice notation string (quantityDsides[[+|-}adjustment], ie 1D6+1)</param>
         /// <returns>int: Result of dice throw</returns>
         /// <exception cref="Exception">Dice roll exception.</exception>
-        public int RollDAndD(string cmd)
+        static public int RollDAndD(string cmd)
         {
             int Quantity = 0;           // Default 1D6
             int Sides = 6;
@@ -142,7 +142,7 @@ namespace DiceLibrary
         /// Returns a Formatted string containing the MIT License
         /// </summary>
         /// <returns>string: Formatted string containing the MIT License</returns>
-        public string MITLicense()
+        static public string MITLicense()
         {
             string? License = "Permission is hereby granted, free of charge, to any person obtaining\n\r";
             License += "a copy of this software and associated documentation files (the\n\r";
