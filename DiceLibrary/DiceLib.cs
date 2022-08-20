@@ -43,6 +43,39 @@ namespace DiceLibrary
         }
 
         /// <summary>
+        /// Roll the dies but return the results in a single "dies" object
+        /// </summary>
+        /// <param name="qty">int: Number of dice to "throw" (1:1000)</param>
+        /// <param name="sides">int: Number of sides on a die (1:1000)</param>
+        /// <param name="adj">int: Adjustment to apply to the total result (MinInt:MaxInt)</param>
+        /// <returns>A single "dies" object containing the total results</returns>
+        static public Dies RollDiesToDie(int qty, int sides, int adj)
+        {
+            Dies dies = new();  // Dice roller instance
+
+            Dice Rolls = new(qty, sides, adj);
+
+            try
+            {
+                dies.Id = 0;
+                dies.Qty = qty;
+                dies.Sides = sides;
+                dies.Adjustment = adj;
+                for (int Idx = 0; Idx < Rolls.DiceCup.Count; Idx++)
+                {
+                    dies.Result += Rolls.DiceCup[Idx].Result;
+                    dies.Total += Rolls.DiceCup[Idx].Result;
+                }
+                dies.Total += adj;
+            }
+            catch(Exception e)
+            {
+                throw new Exception("Dice rolling error: " + e.Message, e.InnerException);
+            }
+            return dies;
+        }
+
+        /// <summary>
         /// Create, roll dice and return a list of every die thrown.
         /// </summary>
         /// <param name="qty">int: Number of dice to "throw" (1:1000)</param>
