@@ -38,6 +38,16 @@ RollDies - Create, roll dice and return the result.
 
 	Returns the total of all dice thrown including the adjustment.
 
+RollDiesToDie - Create, roll dice and return a single dice object (Dies)
+
+	static public Dies RollDiesToDie(int Quantity, int Sides, int Adjustment)
+
+	- int: Quantity - Number of dice to "throw" (1:1000)
+	- int: Sides - Number of sides on a die (1:1000)
+	- int: Adjustment: Adjustment to apply to the total result (+/- int) 
+
+	Returns the total of all dice in a dice object (Dies)
+
 RollDetails - Create, roll dice and return a list structure of all dice throws.
 
 	List<Dies> RollDetails(int Quantity, int Sides, int Adjustment)

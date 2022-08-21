@@ -67,6 +67,7 @@ namespace DiceLibrary
                     dies.Total += Rolls.DiceCup[Idx].Result;
                 }
                 dies.Total += adj;
+                Rolls.DiceCup.Clear();
             }
             catch(Exception e)
             {
