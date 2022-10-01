@@ -1,6 +1,6 @@
-# DiceLibrary 1.0.8.0
+# DiceLibrary 1.0.9.0
 
-By Dan Rhea (aka Lurchicus) 8/5/2022
+By Dan Rhea (aka Lurchicus) 9/30/2022
 
 Written in C# 10.0 for .NET 6.0
 
@@ -79,6 +79,26 @@ RollDAndD - Take a dice notation string to determine what dice we need to throw 
 		Quantity and sides are still limited to 1 to 1000.
 
 	Returns the total of all dice thrown including the adjustment.
+
+RollDAndDToDie - Given dice syntax string, roll the dies but return the results in a single "dies" object
+
+	Dies RollDAndDToDie(string RollCommand)
+
+	- string: RollCommand - Dice notation string (quantityDsides[[+|-]adjustment], I.E. 1D6+1)
+
+		Quantity and sides are still limited to 1 to 1000.
+
+	Returns the total of all dice in a dice object (Dies)
+
+RollDAndDDetails - Given dice syntax string, create, roll dice and return a list of every die thrown.
+
+	List<Dies> RollDAndDDetails(string RollCommand)
+
+	- string: RollCommand - Dice notation string (quantityDsides[[+|-]adjustment], I.E. 1D6+1)
+
+		Quantity and sides are still limited to 1 to 1000.
+
+	Returns a list of "Dies" objects of all dice thrown (see below for dies structure)
 
 MITLicense - Returns a string containing the formatted MIT license
 

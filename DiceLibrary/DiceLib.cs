@@ -12,7 +12,7 @@ namespace DiceLibrary
     public class DiceLib
     {
         /// <summary>
-        /// Create, roll dice and return the result.
+        /// Create, roll dice and return the result as an integer value.
         /// </summary>
         /// <param name="qty">int: Number of dice to "throw" (1:1000)</param>
         /// <param name="sides">int: Number of sides on a die (1:1000)</param>
@@ -170,6 +170,83 @@ namespace DiceLibrary
                 throw new Exception("Dice rolling error: " + e.Message);
             }
             return dies.Total;
+        }
+
+        /// <summary>
+        /// Given dice syntax string, roll the dies but return the results in a single "dies" object
+        /// </summary>
+        /// <param name="cmd">string: Dice notation string (quantityDsides[[+|-}adjustment], ie 1D6+1)</param>
+        /// <returns>A single "dies" object containing the total results</returns>
+        /// <exception cref="Exception">Dice roll exception.</exception>
+        static public Dies RollDAndDToDie(string cmd)
+        {
+            int Quantity = 0;           // Default 1D6
+            int Sides = 6;
+            int Adjustment = 0;
+            Dies dies = new();
+
+            // Parse the dice notation string
+            Parse(cmd, ref Quantity, ref Sides, ref Adjustment);
+
+            Dice Rolls = new(Quantity, Sides, Adjustment);
+
+            try
+            {
+                dies.Id = 0;
+                dies.Qty = Quantity;
+                dies.Sides = Sides;
+                dies.Adjustment = Adjustment;
+                for (int Idx = 0; Idx < Rolls.DiceCup.Count; Idx++)
+                {
+                    dies.Result += Rolls.DiceCup[Idx].Result;
+                    dies.Total += Rolls.DiceCup[Idx].Result;
+                }
+                dies.Total += Adjustment;
+                Rolls.DiceCup.Clear();
+            }
+            catch(Exception e)
+            {
+                throw new Exception("Dice rolling error: " + e.Message, e.InnerException);
+            }
+            return dies;
+        }
+
+        /// <summary>
+        /// Given dice syntax string, create, roll dice and return a list of every die thrown.
+        /// </summary>
+        /// <param name="cmd">string: Dice notation string (quantityDsides[[+|-}adjustment], ie 1D6+1)</param>
+        /// <returns>A list of dies containing roll details</returns>
+        /// <exception cref="Exception">General exception or Nothing to return</exception>
+        static public List<Dies> RollDAndDDetails(string cmd)
+        {
+            int Quantity = 0;           // Default 1D6
+            int Sides = 6;
+            int Adjustment = 0;
+
+            // Parse the dice notation string
+            Parse(cmd, ref Quantity, ref Sides, ref Adjustment);
+
+            List<Dies> Dice = new();    // List of Dies to hold return
+
+            try
+            {
+                // Create and roll all the dice
+                Dice Rolls = new(Quantity, Sides, Adjustment);
+
+                for (int Idx = 0; Idx < Rolls.DiceCup.Count; Idx++)
+                {
+                    Dice.Add(Rolls.Details[Idx]);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Dice rolling error: " + e.Message);
+            }
+            if (Dice.Count == 0)
+            {
+                throw new Exception("Dice rolling error: No roll result.");
+            }
+            return Dice;
         }
 
         /// <summary>
