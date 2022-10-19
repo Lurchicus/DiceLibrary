@@ -1,9 +1,4 @@
 ﻿
-using System.Reflection.Emit;
-using System.Runtime.Intrinsics.X86;
-using System.Security;
-using System;
-
 namespace DiceLibrary
 {
     /// <summary>
@@ -373,7 +368,7 @@ namespace DiceLibrary
                     }
                     catch
                     {
-                        // Thisis so a bogus adjustment will default to a 6 sided die
+                        // This is a bogus adjustment and will default to a 6 sided die
                         Sides = 6;
                     }
                     try
@@ -382,7 +377,7 @@ namespace DiceLibrary
                     }
                     catch
                     {
-                        // This is so a bogus adjustment will default to 0 adjustment
+                        // This is a bogus adjustment so default to a 0 adjustment
                         Adjustment = 0;
                     }
                     if (Adjustment > 0)
