@@ -1,16 +1,19 @@
 ﻿
 namespace DiceLibrary
 {
+
+
     /// <summary>
-    /// Dice rolling class library
+    /// Dice rolling class library 
     /// </summary>
     public class DiceLib
     {
+
         /// <summary>
         /// Create, roll dice and return the result as an integer value.
         /// </summary>
-        /// <param name="qty">int: Number of dice to "throw" (1:1000)</param>
-        /// <param name="sides">int: Number of sides on a die (1:1000)</param>
+        /// <param name="qty">int: Number of dice to "throw" (1:MAX_DIES)</param>
+        /// <param name="sides">int: Number of sides on a die (1:MAX_SIDES)</param>
         /// <param name="adj">int: Adjustment to apply to the total result (MinInt:MaxInt)</param>
         /// <returns>int: Dice roll result plus adjustment</returns>
         /// <exception cref="Exception">General and inner exception</exception>
@@ -40,8 +43,8 @@ namespace DiceLibrary
         /// <summary>
         /// Roll the dies but return the results in a single "dies" object
         /// </summary>
-        /// <param name="qty">int: Number of dice to "throw" (1:1000)</param>
-        /// <param name="sides">int: Number of sides on a die (1:1000)</param>
+        /// <param name="qty">int: Number of dice to "throw" (1:MAX_DIES)</param>
+        /// <param name="sides">int: Number of sides on a die (1:MAX_SIDES)</param>
         /// <param name="adj">int: Adjustment to apply to the total result (MinInt:MaxInt)</param>
         /// <returns>A single "dies" object containing the total results</returns>
         static public Dies RollDiesToDie(int qty, int sides, int adj)
@@ -74,8 +77,8 @@ namespace DiceLibrary
         /// <summary>
         /// Create, roll dice and return a list of every die thrown.
         /// </summary>
-        /// <param name="qty">int: Number of dice to "throw" (1:1000)</param>
-        /// <param name="sides">int: Number of sides on a die (1:1000)</param>
+        /// <param name="qty">int: Number of dice to "throw" (1:MAX_DIES)</param>
+        /// <param name="sides">int: Number of sides on a die (1:MAX_SIDES)</param>
         /// <param name="adj">int: Adjustment to apply to the total result (MinInt:MaxInt)</param>
         /// <returns>A list of dies containing roll details</returns>
         /// <exception cref="Exception">General exception or Nothing to return</exception>
@@ -299,7 +302,7 @@ namespace DiceLibrary
                 return;
             }
 
-            // We started with a D (implies a singlr die)
+            // We started with a D (implies a single die)
             if (arrg.StartsWith("D"))
             {
                 // Just a "D"? Default with 1D6+0

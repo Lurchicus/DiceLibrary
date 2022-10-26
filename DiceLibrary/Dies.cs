@@ -18,4 +18,22 @@
         /// <summary>End total (running total)</summary>
         public int Total { get; set; }
     }
+
+    /// <summary>
+    /// Define the maximum sides and dies for the library. This is an
+    /// arbitrary and conservitive value to keep memory usage to a 
+    /// reasonable level and to keep us from overflowing an int.
+    /// Reference in code as Max.MAX_DIES
+    /// </summary>
+    public class Max
+    {
+        /// <summary>
+        /// Defines the maximuim number of dies allowed
+        /// </summary>
+        public const int MAX_DIES = 1000;
+        /// <summary>
+        /// Defines the maximum number of sides a die can have
+        /// </summary>
+        public const int MAX_SIDES = 1000;
+    }
 }

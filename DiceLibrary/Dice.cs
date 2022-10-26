@@ -5,8 +5,8 @@
         public List<Die> DiceCup = new();   // A nice list object to hold our dies
         public List<Dies> Details = new();
 
-        private int _Quantity;      // 1 to 1000 dies
-        private int _Sides;         // 1 to 1000 sides (1 side is for a 1 or 0 coin toss)
+        private int _Quantity;      // 1 to MAX_DIES dies
+        private int _Sides;         // 1 to MAX_SIDES sides (1 side is for a 1 or 0 coin toss)
         private int _Adjustment;    // Value to add to the sum of our results
 
         /// <summary>
@@ -25,36 +25,36 @@
 
         /// <summary>
         /// Constructor overload
-        /// Rolls 1 to 1000 dies (dice) with 0 to 1000 sides with an sdjustment to the 
+        /// Rolls 1 to MAX_DIES dies (dice) with 0 to MAX_SIDES sides with an sdjustment to the 
         /// total result.
         /// Note: The limit of 1000 for dies and sides is totally arbitrary and could be
         ///       fine tuned higher. It's there since the program instansiates a die 
         ///       class for each die requested so we need to avoid using too much 
         ///       memory. 1000 is VERY conservitive by the way.
-        /// Note: Dice are created and destroyed for each API call
+        /// Note: Dice are created and destroyed for each Library call
         /// </summary>
-        /// <param name="DiceQuantity">int: 1 to 1000 dice</param>
-        /// <param name="DiceSides">int: 1 to 1000 sides</param>
+        /// <param name="DiceQuantity">int: 1 to MAX_DIES dice</param>
+        /// <param name="DiceSides">int: 1 to MAX_SIDES sides</param>
         /// <param name="DiceAdjustment">int: Adjustment to total result</param>
         public Dice(int DiceQuantity, int DiceSides, int DiceAdjustment)
         {
-            // Up to 1000 dies at a time
-            if (DiceQuantity >= 1 && DiceQuantity <= 1000)
+            // Up to MAX_DIES dies at a time
+            if (DiceQuantity >= 1 && DiceQuantity <= Max.MAX_DIES)
             {
                 Quantity = DiceQuantity;
             }
             else
             {
-                throw new Exception("Dice error: " + DiceQuantity.ToString() + " dies quantity is out of range (1:1000).");
+                throw new Exception("Dice error: " + DiceQuantity.ToString() + " dies quantity is out of range (1:MAX_DIES).");
             }
             // Up to 1000 sides on a die
-            if (DiceSides >= 1 && DiceSides <= 1000)
+            if (DiceSides >= 1 && DiceSides <= Max.MAX_SIDES)
             {
                 Sides = DiceSides;
             }
             else
             {
-                throw new Exception("Dice error: " + DiceSides.ToString() + " die sides is out of range (1:1000).");
+                throw new Exception("Dice error: " + DiceSides.ToString() + " die sides is out of range (1:MAX_SIDES).");
             }
             Adjustment = DiceAdjustment;
 
@@ -71,7 +71,7 @@
                     ADetail.Sides = ADie.Sides;             // Sides (also the same for all)
                     ADetail.Adjustment = DiceAdjustment;    // Adjustment (same)
                     ADetail.Result = ADie.Result;           // Get the roll result for this die
-                    ADetail.Total = Results();              // By putting this here, I get a running adjusted total
+                    ADetail.Total = Results();              // By putting this here, I get a running unadjusted total
                     Details.Add(ADetail);              // Shove the details into a list (1:1 with Dice Cup)
                 }
                 catch (OutOfMemoryException e)
@@ -104,7 +104,7 @@
         }
 
         /// <summary>
-        /// Dice Quantity (1:1000)
+        /// Dice Quantity (1:MAX_DIES)
         /// </summary>
         public int Quantity
         {
@@ -113,7 +113,7 @@
         }
 
         /// <summary>
-        /// Dice Sides (1:1000)
+        /// Dice Sides (1:MAX_SIDES)
         /// </summary>
         public int Sides
         {
